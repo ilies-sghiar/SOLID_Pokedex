@@ -1,3 +1,11 @@
+/*
+In order to respect the Single Responsibility Principle of SOLID, this class is only responsible
+for displaying the information of a Pokémon.
+
+This class represents the View layer of our Model-View-Controller (MVC) architecture.
+*/
+
+
 package com.example.pokedex.views;
 
 import com.example.pokedex.models.Pokemon;

@@ -1,3 +1,11 @@
+/*
+In order to respect the Single Responsibility Principle of SOLID, this class was created and used
+by the HTTP service instead of integrating the JSON parsing logic directly into the service.
+
+It is responsible for parsing the API JSON responses in order to extract the required information
+(name, description, height, and weight).
+*/
+
 package com.example.pokedex.services;
 
 import org.json.simple.JSONArray;

@@ -1,3 +1,10 @@
+/*
+This module respects the following SOLID principles:
+- Open-Closed: because it would be possible to create multiple types of Runners, all inheriting from this abstract class.
+- Liskov Substitution: in the setupServiceLocale function (see comment below).
+*/
+
+
 package com.example.pokedex.utilities;
 
 import com.example.pokedex.services.LocalizedPropertyProviderInterface;
@@ -140,7 +147,15 @@ public abstract class AbstractPokedexRunner {
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {}
 
     public void setupServiceLocale(LocalizedPropertyProviderInterface service) {
-        service.setStringPropertyLocale(this.locale);
-    }
+        service.setStringPropertyLocale(this.locale); 
+
+        /*
+        Liskov Substitution Principle: the service must implement the LocalizedPropertyProviderInterface.
+        In this project, AbstractPokemonService implements this interface, and in practice we apply setupServiceLocale
+        on a subclass of AbstractPokemonService (PokemonHttpProvider or PokemonSqliteProvider) without
+        modifying the method's behavior.
+        */
+
+    } 
 
 }

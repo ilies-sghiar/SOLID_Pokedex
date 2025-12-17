@@ -1,3 +1,11 @@
+/*
+In order to respect the Single Responsibility Principle of SOLID, this class is only responsible
+for modeling a Pokemon.
+
+This class represents the Model layer of our Model-View-Controller (MVC) architecture.
+*/
+
+
 package com.example.pokedex.models;
 
 public class Pokemon {

@@ -1,3 +1,10 @@
+/*
+In order to respect the Single Responsibility Principle of SOLID, this class is only responsible
+for performing SQL queries on the database, so that the controller can later instantiate a Pokemon
+from the retrieved results.
+*/
+
+
 package com.example.pokedex.services;
 
 import org.sqlite.SQLiteConfig;
@@ -5,20 +12,12 @@ import org.sqlite.SQLiteConfig;
 import java.sql.*;
 
 public class PokemonSqliteProvider extends AbstractPokemonService {
-    private Integer PokemonId;
-
-    private String LocaleCode;
 
     private String DBpath;
 
     public PokemonSqliteProvider(String dbpath) {
+        super();
         this.DBpath = dbpath;
-    }
-
-    public void setId(Integer pokemonId) {
-
-        this.PokemonId = pokemonId;
-
     }
 
     @Override
@@ -42,7 +41,6 @@ public class PokemonSqliteProvider extends AbstractPokemonService {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Erreur lors de la récupération de la taille : " + e.getMessage());
                 return null;
             }
         }
@@ -65,7 +63,6 @@ public class PokemonSqliteProvider extends AbstractPokemonService {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Erreur lors de la récupération du poids : " + e.getMessage());
                 return null;
             }
         }
@@ -94,7 +91,6 @@ public class PokemonSqliteProvider extends AbstractPokemonService {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Erreur lors de la récupération du nom : " + e.getMessage());
                 return null;
             }
         }
@@ -118,18 +114,18 @@ public class PokemonSqliteProvider extends AbstractPokemonService {
                     }
                 }
             } catch (Exception e) {
-                System.err.println("Erreur lors de la récupération de la description : " + e.getMessage());
                 return null;
             }
         }
         return null;
     }
 
+    @Override
     public void setStringPropertyLocale(String localeCode) {
-        this.LocaleCode = localeCode; // mais n'est jamais utilisé pour SQL (opération fictive)
-    };
+    }
 
+    @Override
     public String getStringPropertyLocale() {
-        return this.LocaleCode;
+        return "fr";
     }
 }

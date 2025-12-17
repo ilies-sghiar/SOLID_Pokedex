@@ -1,3 +1,9 @@
+/*
+In order to respect the Single Responsibility Principle of SOLID, this class is only responsible
+for performing HTTP requests to the API, so that the controller can later instantiate a Pokemon
+from the retrieved results.
+*/
+
 package com.example.pokedex.services;
 
 import org.apache.http.HttpEntity;
@@ -8,16 +14,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 public class PokemonHttpProvider extends AbstractPokemonService {
-
-    private Integer PokemonId;
-
-    private String LocaleCode;
-
-    public void setId(Integer pokemonId) {
-
-        this.PokemonId = pokemonId;
-
-    }
 
     @Override
     public Integer getIntProperty(String propertyName) {
@@ -157,13 +153,5 @@ public class PokemonHttpProvider extends AbstractPokemonService {
             }
         }
         return null;
-    }
-
-    public void setStringPropertyLocale(String localeCode) {
-        this.LocaleCode = localeCode;
-    };
-
-    public String getStringPropertyLocale() {
-        return this.LocaleCode;
     }
 }

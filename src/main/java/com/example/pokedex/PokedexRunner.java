@@ -10,7 +10,7 @@ import com.example.pokedex.views.PokemonView;
 
 public class PokedexRunner extends AbstractPokedexRunner  {
 
-    private AbstractPokemonService myPokemonService;
+    private AbstractPokemonService myPokemonService; 
 
     @Override
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {
@@ -20,7 +20,11 @@ public class PokedexRunner extends AbstractPokedexRunner  {
         else{
             this.myPokemonService = new PokemonSqliteProvider(dbPath);
         }
-        this.setupServiceLocale(this.myPokemonService);
+        this.setupServiceLocale(this.myPokemonService); 
+
+        // Liskov Substitution Principle: myPokemonService is of type AbstractPokemonService, 
+        // but we assign it a subclass (either PokemonHttpProvider or PokemonSqliteProvider) 
+        // without altering the behavior of the method.
     }
 
     @Override
@@ -28,7 +32,7 @@ public class PokedexRunner extends AbstractPokedexRunner  {
 
         myPokemonService.setId(pokemonId);
 
-        PokemonController myController = new PokemonController(myPokemonService, pokemonId);
+        PokemonController myController = new PokemonController(myPokemonService, pokemonId); // Dependency Injection
 
         Pokemon myPokemon = myController.createPokemon();
 
@@ -36,6 +40,5 @@ public class PokedexRunner extends AbstractPokedexRunner  {
 
         myView.getView();
 
-        System.out.printf("Pokemon %s was requested", pokemonId); // TODO remove
     }
 }
